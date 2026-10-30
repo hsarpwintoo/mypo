@@ -42,5 +42,133 @@ p {
 
 body {
   width: 100%;
+  overflow-x: hidden;
 }
 
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (max-width: 1024px) {
+  #header {
+    padding: 16px 32px;
+  }
+
+  .section-p1 {
+    padding: 32px;
+  }
+
+  #navbar li {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 799px) {
+  #header,
+  #header.header {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  #header > div:nth-child(2) {
+    order: 3;
+    width: 100%;
+  }
+
+  #navbar {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 0;
+  }
+
+  #navbar li {
+    padding: 0 8px;
+  }
+
+  #navbar li a {
+    font-size: 14px;
+  }
+
+  #hero {
+    min-height: 600px;
+    height: auto;
+    padding: 80px 32px;
+    background-position: center;
+  }
+
+  #hero h1 {
+    margin-left: 0;
+    font-size: clamp(32px, 8vw, 50px);
+    line-height: 1.15;
+  }
+
+  #hero h4 {
+    text-align: left;
+  }
+
+  #feature {
+    gap: 16px;
+  }
+
+  #feature .fe-box {
+    flex: 1 1 140px;
+    width: auto;
+  }
+
+  #newsletter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 477px) {
+  h1 { font-size: 34px; line-height: 1.2; }
+  h2 { font-size: 30px; line-height: 1.2; }
+  p { font-size: 14px; }
+
+  #header,
+  #header.header {
+    padding: 14px 16px;
+  }
+
+  .header-btns {
+    gap: 10px;
+  }
+
+  .login-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .section-p1 {
+    padding: 28px 16px;
+  }
+
+  #page-header {
+    min-height: 220px;
+    height: auto;
+  }
+
+  #hero {
+    min-height: 520px;
+    padding: 50px 20px;
+  }
+
+  #shopNowBtn {
+    padding: 12px 30px;
+  }
+
+  #navbar li {
+    padding: 0 5px;
+  }
+}

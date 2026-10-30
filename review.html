@@ -39,10 +39,16 @@
             <form action="#" id="reviewForm">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required><br>
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
                 <label for="about">About:</label>
                 <textarea id="about" name="about" rows="4" placeholder="Tell us more about your experience..." required></textarea>
+                <label for="stars">Rating:</label>
+                <select id="stars" name="stars">
+                    <option value="5">5 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="2">2 stars</option>
+                    <option value="1">1 star</option>
+                </select>
                 <div class="btn">
                     <button class="post" type="submit">Post</button>
                 </div>
@@ -102,34 +108,39 @@
   </footer>
 
     <script src="./addtocart.js"></script>
+    <script src="./auth.js"></script>
 
 <script>
     const reviewForm = document.getElementById('reviewForm');
     const thanksMessage = document.getElementById('thanksMessage');
+    const storedReviews = JSON.parse(localStorage.getItem('mypo-reviews') || '[]');
     const reviewsList = [
         {
             name: 'Hsar Pwint',
             about: 'I am extremely satisfied with the quality of the products. The packaging is also excellent. ',
-            starts: 3,
-            job: "Web Developer",
+            stars: 3
         },
         {
             name: 'Hsar Pwint Oo',
             about: 'I am delighted to share my positive experience with this fashion website. The service is top-notch, with very qualified and attentive customer service. Moreover, the product quality exceeded expectations. Overall, a fantastic shopping experience!',
-            starts: 3,
-            job: "Loyal customer",
+            stars: 3
         }
     ];
-    const jobOptions = ['Web Developer','Techer','Programmer','Software Engineer','Software Architect','Database Anylysis','QA Tester'];
+    reviewsList.push(...storedReviews);
     const reviewBoxes = document.getElementById('reviewBoxes');
+    const session = window.MYPOAuth.getSession();
+    const nameInput = document.getElementById('name');
 
-    const  randomIntFromInterval = (min, max) =>  {
-        return Math.floor(Math.random() * (max - min + 1) + min)
+    if (session) {
+        nameInput.value = session.name;
+        nameInput.readOnly = true;
+    } else {
+        nameInput.placeholder = 'Sign in to post a review';
     }
 
     const reloadReviews = () => {
         reviewBoxes.innerHTML = '';
-        reviewsList.forEach((review,key) => { 
+        reviewsList.forEach((review) => {
             var box = document.createElement('div');
             box.classList.add('box');
 
@@ -146,21 +157,16 @@
             nameElement.classList.add('name');
             nameElement.textContent = review.name;
 
-            var jobElement = document.createElement('div');
-            jobElement.classList.add('job');
-            jobElement.textContent = review.job;
-
             var stars = document.createElement('div');
             stars.classList.add('stars');
 
-            for (var i = 0; i < review.stars; i++) {
+            for (var i = 0; i < Number(review.stars); i++) {
                 var starIcon = document.createElement('i');
                 starIcon.classList.add('fas', 'fa-star');
                 stars.appendChild(starIcon);
             }
 
             info.appendChild(nameElement);
-            info.appendChild(jobElement);
             info.appendChild(stars);
 
             var imageContainer = document.createElement('div');
@@ -191,30 +197,26 @@
     reviewForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        // Check if all fields are filled
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
         const about = document.getElementById('about').value;
-        const job   = jobOptions[randomIntFromInterval(0,6)];
-        const stars = randomIntFromInterval(2,5);
 
-        if (name && email && about) {
+        if (!session) {
+            window.location.href = 'login.html';
+            return;
+        }
+        if (about.trim()) {
             const formData = { 
-                name,
-                email,
+                name: session.name,
+                email: session.email,
                 about,
-                job,
-                stars
+                stars: document.getElementById('stars').value
             }
             reviewsList.push(formData)
+            localStorage.setItem('mypo-reviews', JSON.stringify(reviewsList.filter(review => review.email)));
             reloadReviews()
-            
-            // reviewForm.style.display = 'none';
-            // thanksMessage.style.display = 'block';
+            reviewForm.reset();
+            thanksMessage.textContent = 'Thanks for sharing your review!';
         } else {
-            // Handle the form submission as usual
-            // You can add your own logic here
-            console.log('Please fill in all the required fields.');
+            thanksMessage.textContent = 'Please write a review before posting.';
         }
     });
 

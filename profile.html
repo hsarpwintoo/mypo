@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MYPO | Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+  <main class="profile-page">
+    <a class="back-link" href="index.html">← Back to MYPO</a>
+    <section class="profile-card">
+      <p class="eyebrow">MYPO ACCOUNT</p>
+      <h1>Your profile</h1>
+      <p class="profile-intro">Update your details here. Your reviews and account history stay connected to this email address.</p>
+      <form id="profile-form" novalidate>
+        <label for="profile-name">Full name</label>
+        <input id="profile-name" type="text" autocomplete="name" required>
+        <label for="profile-email">Email address</label>
+        <input id="profile-email" type="email" autocomplete="email" required>
+        <label for="profile-password">New password <span>(leave blank to keep current password)</span></label>
+        <input id="profile-password" type="password" minlength="8" autocomplete="new-password">
+        <p id="profile-message" class="profile-message" role="status" aria-live="polite"></p>
+        <div class="profile-actions">
+          <button type="submit">Save changes</button>
+          <button type="button" id="logout-btn" class="secondary-btn">Log out</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="auth.js"></script>
+  <script src="profile.js"></script>
+</body>
+</html>

@@ -96,83 +96,30 @@
           </li>
           <li>
             <i class="fal fa-phone-alt">
-              <p>09*********</p>
-            </i>
-          </li>
-          <li>
-            <i class="fal fa-clock">
-              <p>Monday to Saturday - 9:00 Am to 16:00 Pm</p>
+              <p>09111222333</p>
             </i>
           </li>
         </div>
       </div>
 
       <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1703.0340367562233!2d94.81840963485767!3d16.837557618412948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30bfeb662ce9e45b%3A0x53cbc83270673979!2sPathein%20Technological%20University!5e1!3m2!1sen!2smm!4v1709558015798!5m2!1sen!2smm" width="600" height="450" style="border:0;"></iframe>
+        <iframe src="https://www.google.com/maps?q=Pathein+Township,+Ayeyarwady,+Myanmar&output=embed" width="600" height="450" style="border:0;" loading="lazy"></iframe>
      </div>
     </section>
 
     <!-- Team & Contact  -->
 
     <section id="form-details">
-      <form action="">
-        <span>LEAAVE A MESSAGE</span>
-        <h2>We love to hear from you</h2>
-        <input type="text" placeholder="Your Name" />
-        <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Subject" />
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Your Message"
-        ></textarea>
-        <button class="normal">Submit</button>
-      </form>
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <span>LEAVE A MESSAGE</span>
+            <h2>We love to hear from you</h2>
+            <input type="hidden" name="access_key" value="4e608500-73db-456e-a42d-d641c6561327">
+            <input type="text" name="name" placeholder="Your Name">
+            <input type="email" name="email" placeholder="Your Email">
+            <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <button type="submit" class="normal">Submit</button>
+        </form>
 
-      <div class="people">
-        <div>
-          <img src="img/people/hsar1.jpg" alt="" />
-          <p>
-            <span>Hsar Pwint Oo</span> Chief marketing officer <br />
-            Phone: 09000111222 <br />
-            Email: hsarpwintoo@gmail.com
-          </p>
-        </div>
-        <div>
-          <img src="img/people/mtdm.jpg" alt="" />
-          <p>
-            <span>Myat Thandar Moe</span> Marketing Manager <br />
-            Phone: 09123123123 <br />
-            Email: myattdm@gmail.com
-          </p>
-        </div>
-        <div>
-          <img src="img/people/mssz.jpg" alt="" />
-          <p>
-            <span>Myat Su Swe Zin</span> Brand Ambassador <br />
-            Phone: 09987654321 <br />
-            Email: myatsszhoney@gmail.com
-          </p>
-        </div>
-        <div>
-          <img src="img/people/ydnm.jpg" alt="" />
-          <p>
-            <span>Yadanar Myo</span> Public Relations Manager <br />
-            Phone: 09123456789 <br />
-            Email: treasuremyo@gmail.com
-          </p>
-        </div>
-        <div>
-          <img src="img/people/mmmm.jpg" alt="" />
-          <p>
-            <span>Myint Myat Mg Mg</span> Product Manager <br />
-            Phone: 09111222333 <br />
-            Email:my2mg2@gmail.com
-          </p>
-        </div>
-      </div>
     </section>
 
     <section id="newsletter" class="section-p1 section-m1">
@@ -227,5 +174,6 @@
   </footer>
 
     <script src="./addtocart.js"></script>
+    <script src="./auth.js"></script>
   </body>
 </html>

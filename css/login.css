@@ -13,7 +13,8 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 24px;
 }
 
 .container{
@@ -37,6 +38,30 @@ body{
 .container span{
     font-size: 12px;
 }
+
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-message{
+    min-height: 20px;
+    width: 100%;
+    margin: 4px 0;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.form-message.error{ color: #b42318; }
+.form-message.success{ color: #087443; }
 
 .container a{
     color: #333;
@@ -205,4 +230,62 @@ body{
 
 .container.active .toggle-right{
     transform: translateX(200%);
+}
+
+@media (max-width: 640px){
+    body{ padding: 12px; }
+    .container{
+        min-height: 650px;
+        border-radius: 20px;
+    }
+    .form-container{
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 310px;
+    }
+    .sign-in,
+    .sign-up,
+    .container.active .sign-in,
+    .container.active .sign-up{
+        left: 0;
+        width: 100%;
+        transform: none;
+    }
+    .sign-up{ display: none; }
+    .container.active .sign-in{ display: none; }
+    .container.active .sign-up{
+        display: block;
+        opacity: 1;
+    }
+    .toggle-container,
+    .container.active .toggle-container{
+        top: auto;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 220px;
+        border-radius: 0 0 20px 20px;
+        transform: none;
+    }
+    .toggle,
+    .container.active .toggle{
+        left: 0;
+        width: 100%;
+        transform: none;
+    }
+    .toggle-panel{
+        width: 100%;
+        padding: 20px;
+    }
+    .toggle-left,
+    .container.active .toggle-left{
+        transform: translateX(-100%);
+    }
+    .toggle-right,
+    .container.active .toggle-right{
+        transform: translateX(0);
+    }
+    .container.active .toggle-left{ transform: translateX(0); }
+    .container.active .toggle-right{ transform: translateX(100%); }
 }
